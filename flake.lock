@@ -85,11 +85,11 @@
         "sdl2-src": "sdl2-src"
       },
       "locked": {
-        "lastModified": 1791057929,
-        "narHash": "sha256-kPhwZ9CF4Wls8PV95/Urjhc2eLzLqWBY6AFnby4wEi0=",
+        "lastModified": 1791066403,
+        "narHash": "sha256-AGYzhDNhB4CGzS+2nQTjVrvK6bZGuDA1verphxqh1vw=",
         "ref": "refs/heads/master",
-        "rev": "910d9d26aa84b9ef66511341c8e3bb56a7c5d3a6",
-        "revCount": 114,
+        "rev": "89071091f975034fce94c2bb78c724487727d588",
+        "revCount": 119,
         "type": "git",
         "url": "https://github.com/Grumbel/kurvenrausch"
       },
