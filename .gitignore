@@ -5,14 +5,3 @@ result-*
 *.swp
 *~
 .DS_Store
-# Local emscripten / cmake scratch
-/build/
-/objs/
-/prefix/
-src-tree/
-emcache/
-*.o
-kurvenrausch.html
-kurvenrausch.js
-kurvenrausch.wasm
-kurvenrausch.data
