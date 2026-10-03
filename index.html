@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurvenrausch</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Helvetica Neue", Helvetica, Verdana, system-ui, sans-serif;
+      background-color: #1a1e28;
+      background-image:
+        linear-gradient(180deg, #1a1e28 0%, #0c0e14 100%);
+      color: #222;
+      line-height: 1.5;
+    }
+
+    #page {
+      width: min(820px, 100%);
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 64px rgba(0, 0, 0, 0.85);
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(180deg, #2a3140 0%, #1a1e28 100%);
+      border-bottom: 4px solid #e8a020;
+      padding: 1.5rem 1rem 1rem;
+      color: #f0f2f5;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: #f5c040;
+      text-shadow: 0 2px 0 #3a2800;
+    }
+
+    header .tagline {
+      margin: 0.5rem 0 0;
+      color: #b8c0d0;
+      font-size: 1rem;
+    }
+
+    .hero {
+      display: block;
+      width: 100%;
+      height: auto;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: #000;
+    }
+
+    #pagebody {
+      padding: 1.25rem 1.75rem 2rem;
+    }
+
+    section {
+      margin-bottom: 1.75rem;
+    }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      color: #2a3140;
+      border-bottom: 1px solid #e0e4ec;
+      padding-bottom: 0.25rem;
+    }
+
+    section > p {
+      margin: 0.5rem 0 0.75rem;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 0.25rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    li {
+      margin: 0.35rem 0;
+    }
+
+    a {
+      color: #c47800;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      color: #8a5200;
+      text-decoration: underline;
+    }
+
+    .play-btn {
+      display: inline-block;
+      margin: 0.5rem 0 1rem;
+      padding: 0.65rem 1.4rem;
+      background: #e8a020;
+      color: #1a1200 !important;
+      border-radius: 6px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none !important;
+      box-shadow: 0 2px 0 #a07010;
+    }
+
+    .play-btn:hover {
+      background: #f5b830;
+      color: #1a1200 !important;
+    }
+
+    .zones {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid #d0d4dc;
+    }
+
+    footer {
+      background-color: #12151c;
+      color: #a0a8b8;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      line-height: 1.4;
+    }
+
+    footer a {
+      color: #f0b040;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="page">
+    <header>
+      <h1>Kurvenrausch</h1>
+      <p class="tagline">Classic pseudo-3D bitmap racer</p>
+    </header>
+
+    <img class="hero" src="images/screenshot.png" alt="Kurvenrausch on the Côte d'Azur corniche">
+
+    <div id="pagebody">
+      <section>
+        <h2>Play in the browser</h2>
+        <p>
+          Software-rendered 320×240 framebuffer, scaled up with chunky pixels.
+          Built to WebAssembly with Emscripten and packaged with Nix.
+        </p>
+        <a class="play-btn" href="play/kurvenrausch.html">Play Kurvenrausch (WASM)</a>
+        <ul>
+          <li><a href="https://github.com/Grumbel/kurvenrausch">Source code</a></li>
+          <li><a href="https://github.com/Grumbel/kurvenrausch#build">Native build (Nix / CMake)</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>About</h2>
+        <p>
+          In the spirit of <em>OutRun</em>, <em>Lotus Esprit Turbo Challenge</em>
+          and <em>Pole Position</em>: one lap through Europe and the USA with
+          weather, cliff roads, traffic, and a synthesised engine. Written in
+          C++17 with SDL2. All art is generated procedurally as pixel art at
+          startup; all sound is synthesised on the fly — there are no asset files.
+        </p>
+      </section>
+
+      <section>
+        <h2>Sixteen zones</h2>
+        <p>
+          France, England, the Netherlands, Germany, Switzerland, Italy, Egypt,
+          Kenya, India, Korea, Japan, Australia, Arizona, California, San Francisco,
+          Brazil — each with its own scenery, weather and road markings.
+        </p>
+        <img class="zones" src="images/zones.png" alt="The sixteen zones of Kurvenrausch">
+      </section>
+
+      <section>
+        <h2>Controls</h2>
+        <ul>
+          <li><strong>↑ / W</strong> or right trigger — accelerate</li>
+          <li><strong>↓ / S</strong> or left trigger — brake / reverse</li>
+          <li><strong>← → / A D</strong> or left stick — steer</li>
+          <li><strong>Space / Y</strong> — nitro</li>
+          <li><strong>H / X</strong> — horn</li>
+          <li><strong>C / Back</strong> — camera view</li>
+          <li><strong>P / Start</strong> — pause menu</li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      <a href="https://github.com/Grumbel/kurvenrausch">Kurvenrausch</a>
+      · GPL-3.0-or-later
+      · site built with Nix, deployed via GitHub Pages
+    </footer>
+  </div>
+</body>
+</html>
