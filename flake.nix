@@ -15,7 +15,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    kurvenrausch.url = "github:Grumbel/kurvenrausch";
+    # git+https, not github: only a git fetch carries the commit count the
+    # game's version (0.1.0-dev.<count>+g<rev>) is made of.
+    kurvenrausch.url = "git+https://github.com/Grumbel/kurvenrausch";
     kurvenrausch.inputs.nixpkgs.follows = "nixpkgs";
   };
 

@@ -1,5 +1,44 @@
 {
   "nodes": {
+    "SDL2-win32": {
+      "inputs": {
+        "SDL2_src": "SDL2_src",
+        "flake-utils": [
+          "kurvenrausch",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "kurvenrausch",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786297641,
+        "narHash": "sha256-yu4LwoIC0TCh8EhZzyDj1u99WnkqslMNp5rrg3hqAWM=",
+        "owner": "grumnix",
+        "repo": "SDL2-win32",
+        "rev": "8ca7fe1bc9ef1201f1247fbcc8b560a1a06da8b1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "grumnix",
+        "repo": "SDL2-win32",
+        "type": "github"
+      }
+    },
+    "SDL2_src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748906407,
+        "narHash": "sha256-aakdhaTL0dgt2BQEtv3w6pp1mwOrmNzEorh3lLxJgyo=",
+        "type": "tarball",
+        "url": "https://libsdl.org/release/SDL2-devel-2.32.8-mingw.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://libsdl.org/release/SDL2-devel-2.32.8-mingw.tar.gz"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -38,6 +77,7 @@
     },
     "kurvenrausch": {
       "inputs": {
+        "SDL2-win32": "SDL2-win32",
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
@@ -45,17 +85,17 @@
         "sdl2-src": "sdl2-src"
       },
       "locked": {
-        "lastModified": 1791010989,
-        "narHash": "sha256-KNhmVq0W6kFsaqVqHzxrvDCPr1MFJ2xaHjdozEuh4d0=",
-        "owner": "Grumbel",
-        "repo": "kurvenrausch",
-        "rev": "5ada715317745338c0c18d1e21b2cb1c15aea200",
-        "type": "github"
+        "lastModified": 1791029712,
+        "narHash": "sha256-3QXExK6dCzI368TVfNJytRaSeTv4s5uDxAzgxVAI6Kw=",
+        "ref": "refs/heads/master",
+        "rev": "72ca106dcc2c2ce7726d2664e101cd913db986ec",
+        "revCount": 110,
+        "type": "git",
+        "url": "https://github.com/Grumbel/kurvenrausch"
       },
       "original": {
-        "owner": "Grumbel",
-        "repo": "kurvenrausch",
-        "type": "github"
+        "type": "git",
+        "url": "https://github.com/Grumbel/kurvenrausch"
       }
     },
     "nixpkgs": {
