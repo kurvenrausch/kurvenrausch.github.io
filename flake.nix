@@ -1,10 +1,11 @@
 # SPDX-FileCopyrightText: 2026 Ingo Ruhnke <grumbel@gmail.com>
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# Kurvenrausch website: static landing page + WASM from the game flake +
-# GitHub Pages. Same shape as SuperTux-Origins.github.io.
+# Kurvenrausch website: static landing page + WASM and the downloadable
+# ports (Windows, Android, R36S) from the game flake + GitHub Pages. Same
+# shape as SuperTux-Origins.github.io.
 #
-#   nix build          # → result/ (index.html, images/, play/)
+#   nix build          # → result/ (index.html, images/, play/, downloads/)
 #   nix run .#serve    # local preview
 #
 {
@@ -19,26 +20,33 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, kurvenrausch }:
-    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
+    # x86_64-linux only: the Android SDK and NDK the game's Android build
+    # needs are not packaged for other hosts.
+    flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-
-        kurvenrausch-wasm = kurvenrausch.packages.${system}.kurvenrausch-wasm;
+        game = kurvenrausch.packages.${system};
+        version = game.kurvenrausch.version;
 
         site = pkgs.runCommand "kurvenrausch-site" { } ''
           mkdir -p $out
-          cp -v ${./index.html} $out/index.html
+          substitute ${./index.html} $out/index.html --subst-var-by version ${version}
           cp -rv ${./images} $out/images
 
           # Playable WASM build from the game flake (html/js/wasm + index.html).
           mkdir -p $out/play
-          cp -rv ${kurvenrausch-wasm}/. $out/play/
+          cp -rv ${game.kurvenrausch-wasm}/. $out/play/
           chmod -R u+w $out/play
 
-          # Prefer a stable entry name if the package only ships index.html.
-          if [ ! -f $out/play/kurvenrausch.html ] && [ -f $out/play/index.html ]; then
-            cp -v $out/play/index.html $out/play/kurvenrausch.html
-          fi
+          # The ports, built from the same revision, under stable names so
+          # the page's links never change (the version is on the page).
+          mkdir -p $out/downloads/r36s
+          cp -v ${game.kurvenrausch-win64-zip}/*.zip $out/downloads/kurvenrausch-win64.zip
+          cp -v ${game.kurvenrausch-win32-zip}/*.zip $out/downloads/kurvenrausch-win32.zip
+          cp -v ${game.kurvenrausch-android}/*.apk $out/downloads/kurvenrausch.apk
+          # PortMaster expects the zip under the name its port.json gives.
+          cp -v ${game.kurvenrausch-r36s-portmaster-zip}/kurvenrausch.zip $out/downloads/r36s/kurvenrausch.zip
+          chmod -R u+w $out/downloads
         '';
 
         serveApp = {

@@ -117,6 +117,34 @@
       color: #1a1200 !important;
     }
 
+    .downloads {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0.75rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .downloads li {
+      margin: 0;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #e0e4ec;
+      border-radius: 6px;
+      background: #f8f9fb;
+    }
+
+    .downloads .note {
+      display: block;
+      color: #555;
+      font-size: 0.85rem;
+      font-weight: normal;
+    }
+
+    .version {
+      color: #666;
+      font-size: 0.85rem;
+    }
+
     .zones {
       width: 100%;
       height: auto;
@@ -166,12 +194,44 @@
         </ul>
       </section>
 
+      <section id="download">
+        <h2>Download</h2>
+        <p>
+          Built from the same source as the browser version,
+          <span class="version">version @version@</span>.
+        </p>
+        <ul class="downloads">
+          <li>
+            <a href="downloads/kurvenrausch-win64.zip">Windows (64-bit)</a>
+            · <a href="downloads/kurvenrausch-win32.zip">32-bit</a>
+            <span class="note">Unzip and start <code>kurvenrausch.exe</code>. Windows 7 and later.</span>
+          </li>
+          <li>
+            <a href="downloads/kurvenrausch.apk">Android (APK)</a>
+            <span class="note">Android 7 and later; touch controls, gamepads and keyboards.
+              Allow installing apps from your browser to install it.</span>
+          </li>
+          <li>
+            <a href="downloads/r36s/kurvenrausch.zip">R36S and other PortMaster handhelds</a>
+            <span class="note">For ArkOS and alike (aarch64): put the zip into
+              <code>ports/PortMaster/autoinstall/</code> and start PortMaster, or unpack it to
+              <code>/roms/ports/</code>.</span>
+          </li>
+          <li>
+            <a href="https://github.com/Grumbel/kurvenrausch#build">Linux and other systems</a>
+            <span class="note">Build from source with Nix (<code>nix run github:Grumbel/kurvenrausch</code>)
+              or CMake and SDL2.</span>
+          </li>
+        </ul>
+      </section>
+
       <section>
         <h2>About</h2>
         <p>
           In the spirit of <em>OutRun</em>, <em>Lotus Esprit Turbo Challenge</em>
-          and <em>Pole Position</em>: one lap through Europe and the USA with
-          weather, cliff roads, traffic, and a synthesised engine. Written in
+          and <em>Pole Position</em>: one lap around the world with changing
+          weather, cliff roads, forks in the road, traffic, police chases, a
+          synthesised engine and a radio. Written in
           C++17 with SDL2. All art is generated procedurally as pixel art at
           startup; all sound is synthesised on the fly — there are no asset files.
         </p>
@@ -194,10 +254,16 @@
           <li><strong>↓ / S</strong> or left trigger — brake / reverse</li>
           <li><strong>← → / A D</strong> or left stick — steer</li>
           <li><strong>Space / Y</strong> — nitro</li>
+          <li><strong>Ctrl</strong> or left shoulder — handbrake</li>
           <li><strong>H / X</strong> — horn</li>
           <li><strong>C / Back</strong> — camera view</li>
-          <li><strong>P / Start</strong> — pause menu</li>
+          <li><strong>N</strong> or right stick — radio</li>
+          <li><strong>P / Esc / Start</strong> — pause menu</li>
         </ul>
+        <p>
+          On a touch screen, controls appear once you touch it: drag on the
+          left to steer, the pedals and buttons are on the right.
+        </p>
       </section>
     </div>
 

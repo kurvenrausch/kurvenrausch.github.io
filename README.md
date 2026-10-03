@@ -3,9 +3,10 @@
 Static site for [Kurvenrausch](https://github.com/Grumbel/kurvenrausch), structured
 like [SuperTux-Origins.github.io](https://github.com/SuperTux-Origins/SuperTux-Origins.github.io):
 
-- **Nix flake** pulls the playable **WASM** package from the game flake
-  (`kurvenrausch.packages.*.kurvenrausch-wasm`) and assembles `index.html`,
-  screenshots, and `play/` into a single store path
+- **Nix flake** pulls the playable **WASM** package and the downloadable
+  ports (Windows 64/32-bit zips, the Android APK, the R36S PortMaster zip)
+  from the game flake and assembles `index.html`, screenshots, `play/` and
+  `downloads/` into a single store path; building the site builds them all
 - **GitHub Pages** deploys that path via `.github/workflows/pages.yml`
 - **Local preview**: `nix run .#serve`
 
@@ -27,6 +28,11 @@ like [SuperTux-Origins.github.io](https://github.com/SuperTux-Origins/SuperTux-O
 nix build
 ls result/
 # result/index.html  result/images/  result/play/kurvenrausch.{html,js,wasm}
+# result/downloads/kurvenrausch-win64.zip  kurvenrausch-win32.zip  kurvenrausch.apk
+# result/downloads/r36s/kurvenrausch.zip
+
+# Build against a local checkout of the game instead of GitHub:
+nix build --override-input kurvenrausch git+file://$HOME/projects/kurvenrausch/kurvenrausch.git
 
 # Serve and open a browser (port 8765 by default)
 nix run .
@@ -42,8 +48,11 @@ KURVENRAUSCH_PORT=9000 nix run .#serve
 3. On every push to `master`, the workflow runs `nix build` and deploys
    `result/` with `actions/deploy-pages`.
 
-WASM is built by the [kurvenrausch](https://github.com/Grumbel/kurvenrausch)
-flake (`nix build .#kurvenrausch-wasm` there). This site only packages it.
+The WASM build and the ports are built by the
+[kurvenrausch](https://github.com/Grumbel/kurvenrausch) flake; this site only
+packages them. The site follows the game revision in `flake.lock`: after
+pushing the game, run `nix flake update kurvenrausch` here and push to
+rebuild everything. The build runs on x86_64-linux only (the Android SDK).
 
 ## License
 
