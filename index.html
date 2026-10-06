@@ -184,7 +184,8 @@
       <section>
         <h2>Play in the browser</h2>
         <p>
-          Software-rendered 320×240 framebuffer, scaled up with chunky pixels.
+          A 320×240 picture (640×480 in HD), scaled up with chunky pixels and
+          drawn on the GPU with WebGL, or in software (F8 switches).
           Built to WebAssembly with Emscripten and packaged with Nix.
         </p>
         <a class="play-btn" href="play/kurvenrausch.html">Play Kurvenrausch (WASM)</a>
@@ -213,7 +214,8 @@
           </li>
           <li>
             <a href="downloads/r36s/kurvenrausch.zip">R36S and other PortMaster handhelds</a>
-            <span class="note">For ArkOS and alike (aarch64): put the zip into
+            <span class="note">Runs at 60 fps on the R36S with its OpenGL ES renderer.
+              For ArkOS and alike (aarch64): put the zip into
               <code>ports/PortMaster/autoinstall/</code> and start PortMaster, or unpack it to
               <code>/roms/ports/</code>.</span>
           </li>
@@ -231,8 +233,10 @@
           In the spirit of <em>OutRun</em>, <em>Lotus Esprit Turbo Challenge</em>
           and <em>Pole Position</em>: one lap around the world with changing
           weather, cliff roads, forks in the road, traffic, police chases, a
-          synthesised engine and a radio. Written in
-          C++17 with SDL2. All art is generated procedurally as pixel art at
+          synthesised engine and a radio, from sunrise to a night lit by street
+          lamps, neon and headlights. Written in C++17 with SDL2, with two
+          renderers that draw the same picture: a classic software renderer and
+          an OpenGL ES 2 one. All art is generated procedurally as pixel art at
           startup; all sound is synthesised on the fly — there are no asset files.
         </p>
       </section>
@@ -258,6 +262,8 @@
           <li><strong>H / X</strong> — horn</li>
           <li><strong>C / Back</strong> — camera view</li>
           <li><strong>N</strong> or right stick — radio</li>
+          <li><strong>L</strong> or D-pad up — headlights</li>
+          <li><strong>F8</strong> — switch renderer (GPU / software)</li>
           <li><strong>P / Esc / Start</strong> — pause menu</li>
         </ul>
         <p>
